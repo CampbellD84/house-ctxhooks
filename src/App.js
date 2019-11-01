@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { Store } from "./Store";
+import { Link } from "@reach/router";
 
-function App() {
+const App = props => {
+  const { state } = useContext(Store);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <div>
+          <h1>House</h1>
+          <p>Pick your favorite episodes</p>
+        </div>
+        <div>
+          <Link to="/">Home</Link>{" "}
+          <Link to="/faves">Favorite(s) {state.favorites.length}</Link>
+        </div>
       </header>
-    </div>
+      {props.children}
+    </>
   );
-}
+};
 
 export default App;
