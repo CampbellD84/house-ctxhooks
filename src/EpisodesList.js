@@ -1,4 +1,5 @@
 import React from "react";
+import ReactHtmlParser from "react-html-parser";
 
 const EpisodesList = props => {
   const { episodes, toggleFavEpisode, favorites } = props;
@@ -12,6 +13,7 @@ const EpisodesList = props => {
           <div>
             Season: {episode.season} Number: {episode.number}
           </div>
+          <div>{ReactHtmlParser(`${episode.summary}`)}</div>
           <button type="button" onClick={() => toggleFavEpisode(episode)}>
             {favorites.find(fav => fav.id === episode.id)
               ? "Unfavorite"
